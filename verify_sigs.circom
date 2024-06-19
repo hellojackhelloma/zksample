@@ -7,7 +7,7 @@ template VerifySignature(n) {
     signal input messages[n];
     signal input pubKeys[n][2];
     signal input signatures[n][2];
-    signal output valid;
+    signal output allValid;
 
     component verifiers[n];
 
@@ -19,12 +19,10 @@ template VerifySignature(n) {
         verifiers[i].S <== signatures[i][1];
     }
 
-    signal validAll = 1;
+    allValid <== 1;
     for (var i = 0; i < n; i++) {
-        validAll <== validAll * verifiers[i].out;
+        allValid <== allValid * verifiers[i].out;
     }
-
-    valid <== validAll;
 }
 
 component main = VerifySignature(3);
