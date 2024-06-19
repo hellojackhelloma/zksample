@@ -27,7 +27,7 @@ template SingleRelayVerifier() {
   sigVerifier.Ay <== sender_pubkey[1];
   sigVerifier.R8x <== sender_sig_r[0];
   sigVerifier.R8y <== sender_sig_r[1];
-  sigVerifier.S <== 1;
+  sigVerifier.S <== sender_sig_s;
   sigVerifier.M <== msgHasher.out;
 }
 
